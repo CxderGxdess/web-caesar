@@ -4,25 +4,28 @@ from caesar import rotate_string
 app = Flask(__name__)
 app.config['DEBUG'] = True
 
-form="""
+form = """
 <!DOCTYPE html>
 
 <html>
     <head>
         <style>
-            form {{}
+            form {
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }}
-            textarea {{}
+            }
+            textarea {
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }}
+            }
+            p.error {
+                color: red;
+            }
         </style>
     </head>
     <body>
@@ -42,15 +45,13 @@ form="""
 
 @app.route("/")
 def index():
-    return form.format('')
+    return form.format("")
 
 @app.route("/", methods=['POST'])
-
 def encrypt():
-	form_rot = int(request.form['rot'])
-	form_text = request.form['text']
+    form_rot = int(request.form['rot'])
+    form_text = request.form['text']
 	encrypted = rotate_string(form_text, form_rot)
-    #return "<h1>" + encrypted + "</h1>"
     return form.format(encrypted)
 
 app.run()    
