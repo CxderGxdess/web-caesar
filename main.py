@@ -10,22 +10,22 @@ form = """
 <html>
     <head>
         <style>
-            form {
+            form {{
                 background-color: #eee;
                 padding: 20px;
                 margin: 0 auto;
                 width: 540px;
                 font: 16px sans-serif;
                 border-radius: 10px;
-            }
-            textarea {
+            }}
+            textarea {{
                 margin: 10px 0;
                 width: 540px;
                 height: 120px;
-            }
-            p.error {
+            }}
+            p.error {{
                 color: red;
-            }
+            }}
         </style>
     </head>
     <body>
@@ -51,7 +51,8 @@ def index():
 def encrypt():
     form_rot = int(request.form['rot'])
     form_text = request.form['text']
-	encrypted = rotate_string(form_text, form_rot)
+    encrypted = rotate_string(form_text, form_rot)
+
     return form.format(encrypted)
 
 app.run()    
